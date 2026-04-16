@@ -18,6 +18,6 @@ int main() {
 }
 
 int recursive_sum(int m, int n) {
-    if(m == n) return m;
+    if(m == n) return m; //Without this will result in stackoverflow exception
     return m + recursive_sum(m + 1, n);
 }
