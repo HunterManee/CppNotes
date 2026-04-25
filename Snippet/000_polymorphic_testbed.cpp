@@ -5,8 +5,11 @@ using namespace std;
 class BaseClass {
     public:
         virtual ~BaseClass() = default;
+        
         virtual void function() = 0; //pure virtual
+        
         virtual BaseClass* clone() const = 0;
+        virtual string toString() const = 0;
 };
 class derivedClassA : public BaseClass {
     public:
@@ -15,30 +18,36 @@ class derivedClassA : public BaseClass {
             *this = toCopy;
         }
 
-        BaseClass* clone() const override {
-            return new derivedClassA(*this);
-        }
-
         void function() override {
             std::cout << "From Derived Function A\n";
         }  
+
+        BaseClass* clone() const override {
+            return new derivedClassA(*this);
+        }
+        string toString() const override {
+
+        }
 };
 class derivedClassB : public BaseClass {
+    double number;
     public:
         derivedClassB(){}
         derivedClassB(const derivedClassB& toCopy) {
             *this = toCopy;
         }
 
-        BaseClass* clone() const override {
-            return new derivedClassB(*this);
-        }
-
         void function() override {
             std::cout << "From Derived Function B\n";
         } 
-};
 
+        BaseClass* clone() const override {
+            return new derivedClassB(*this);
+        }
+        string toString() const override {
+
+        }
+};
 
 class TestingGrounds {
     private:
