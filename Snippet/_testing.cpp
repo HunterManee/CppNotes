@@ -31,7 +31,7 @@ class DerivedClassA : public BaseClass {
         string toString() const override {
             string output = "";
             output += "Derived Class A:\n";
-            output += "\tNumbers => " + to_string(Number) + "\n";
+            output += "\tNumbers => " + to_string(Number);
             return output;
         }
 };
@@ -60,6 +60,14 @@ class DerivedClassB : public BaseClass {
         DerivedClassB() {
             Data = new CustomType[Size];
         };
+        DerivedClassB(const CustomType data[], int size):
+        Size{size}
+        {   
+            Data = new CustomType[Size];
+            for(int i = 0; i < Size; i++) {
+                Data[i] = data[i];
+            }
+        }
         //Destructor
         ~DerivedClassB() override{
             delete[] Data;
@@ -138,16 +146,27 @@ class Entity {
 };
 
 int main() {
+    cout << "DerivedClassA Test" << endl;
     DerivedClassA DCA{};
-    
     Entity entity1{DCA};
     entity1.testing();
-
-
+    
+    cout << endl << "DerivedClassB addElement Test" << endl;
     DerivedClassB DCB{};
     DCB.addElement({1,1});
     DCB.addElement({1,2});
 
     Entity entity2{DCB};
     entity2.testing();
+
+    cout << endl << "DerivedClassB(CustomType data[], int size) Test" << endl;
+    int size = 2; //random number
+    CustomType *data = new CustomType[size];
+    //data[i] = {double, double}
+    data[0] = {1,1};
+    data[1] = {1,2};
+    DerivedClassB DCC{data, size};
+
+    Entity entity3{DCC};
+    DCC.function();
 }
