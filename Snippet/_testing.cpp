@@ -60,7 +60,6 @@ class DerivedClassB : public BaseClass {
         DerivedClassB() {
             Data = new CustomType[Size];
         };
-
         //Destructor
         ~DerivedClassB() override{
             delete[] Data;
@@ -121,11 +120,34 @@ class DerivedClassB : public BaseClass {
         }
 };
 
+class Entity {
+    private:
+        BaseClass* baseClass;
+    
+    public:
+        Entity(const BaseClass& derivedClass):
+        baseClass(derivedClass.clone()) {}
+
+        ~Entity() {
+            delete baseClass;
+        }
+
+        void testing() {
+            baseClass->function();
+        }
+};
 
 int main() {
+    DerivedClassA DCA{};
+    
+    Entity entity1{DCA};
+    entity1.testing();
+
+
     DerivedClassB DCB{};
     DCB.addElement({1,1});
     DCB.addElement({1,2});
 
-    
+    Entity entity2{DCB};
+    entity2.testing();
 }
