@@ -30,7 +30,6 @@ class derivedClassA : public BaseClass {
         }
 };
 class derivedClassB : public BaseClass {
-    double number;
     public:
         derivedClassB(){}
         derivedClassB(const derivedClassB& toCopy) {

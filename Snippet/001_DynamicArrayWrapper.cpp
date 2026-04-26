@@ -1,6 +1,7 @@
 #include <iostream>
 
 class MyClass {
+
 public:
     int value;
 
@@ -78,7 +79,6 @@ public:
     std::string toString() const {
 
         if(data == nullptr) return "nullptr";
-
         std::string output = "[";
 
         for(int i = 0; i < size; i++) {
@@ -125,5 +125,6 @@ int main() {
     std::cout << "c(" << &c << ") => " << c.toString() << std::endl;
 
     std::cout << "\n---- End of main ----\n";
+
     return 0;
 }
